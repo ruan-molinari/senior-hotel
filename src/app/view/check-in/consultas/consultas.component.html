@@ -5,7 +5,7 @@
     <th scope="col">Valor gasto (R$)</th>
   </thead>
   <tbody>
-    @for (hospede of hospedes; track hospede) {
+    @for (hospede of hospedes | paginaPipe:pagina:10; track hospede) {
       <tr>
         <td>{{hospede.nome}}</td>
         <td>{{hospede.CPF}}</td>

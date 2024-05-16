@@ -5,6 +5,7 @@ import { CheckIn } from '../../../shared/models/check-in';
 
 import { from, map, toArray } from 'rxjs';
 import { CurrencyPipe } from '@angular/common';
+import { PaginaPipe } from '../../../shared/pipes/pagina.pipe';
 
 enum FiltroHospedes {
   AindaPresentes = 'presente',
@@ -14,12 +15,13 @@ enum FiltroHospedes {
 @Component({
   selector: 'app-consultas',
   standalone: true,
-  imports: [CurrencyPipe],
+  imports: [CurrencyPipe, PaginaPipe],
   templateUrl: './consultas.component.html',
   styleUrl: './consultas.component.scss'
 })
 export class ConsultasComponent implements OnInit {
 
+  pagina = 0;
   filtro = FiltroHospedes.AindaPresentes;
   hospedes: PessoaHospede[] = [];
 

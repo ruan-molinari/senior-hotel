@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { CheckIn } from '../../shared/models/check-in';
 import { HttpClient } from '@angular/common/http';
-import { Observable, filter, map } from 'rxjs';
-import { Pessoa } from '../../shared/models/pessoa';
+import { Observable, map } from 'rxjs';
 
 const API_URL = 'http://localhost:3000'
 
@@ -15,12 +14,6 @@ export class CheckInService {
 
   buscarTodos(): Observable<CheckIn[]> {
     return this.httpClient.get<CheckIn[]>(`${API_URL}/check-in`);
-  }
-
-  buscarPorPessoa(pessoa: Pessoa): Observable<CheckIn[]> {
-    return this.httpClient.get<CheckIn[]>(`${API_URL}/check-in`)
-      .pipe(
-        map(res => res.filter(c => c.pessoa == pessoa)));
   }
 
   buscarPorData(estadia: 'futuro' | 'presente' | 'passado'): Observable<CheckIn[]> {
