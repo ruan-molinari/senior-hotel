@@ -1,0 +1,41 @@
+<form [formGroup]="pessoaForm" (submit)="onSubmit()">
+  <div class="form-group">
+    <label for="nomeInput" class="form-label">Nome</label>
+    <input
+      type="datetime"
+      class="form-control"
+      formControlName="nome"
+      id="nomeInput"
+      [ngClass]="{ 'is-invalid': f['nome'].touched && f['nome'].errors }">
+    @if (f['nome'].touched && f['nome'].errors) {
+    <div class="invalid-feedback">
+      @if (f['nome'].errors['required']) {
+      <div>A pessoa precisa de um nome</div>
+      }
+      @if (f['nome'].errors['minLength']) {
+      <div>Nome muito curto</div>
+      }
+    </div>
+    }
+  </div>
+
+  <div class="form-group">
+    <label for="cpfInput" class="form-label">CPF</label>
+    <input
+      type="datetime"
+      class="form-control"
+      formControlName="CPF"
+      id="cpfInput"
+      [ngClass]="{ 'is-invalid': f['CPF'].touched && f['CPF'].errors }">
+  </div>
+
+  <label for="telefoneInput" class="form-label">Telefone</label>
+  <input
+    type="tel"
+    class="form-control"
+    formControlName="telefone"
+    id="telefoneInput"
+    [ngClass]="{ 'is-invalid': f['telefone'].touched && f['telefone'].errors }">
+
+  <button class="btn btn-primary">Salvar</button>
+</form>
