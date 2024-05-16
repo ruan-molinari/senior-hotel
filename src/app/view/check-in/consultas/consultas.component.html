@@ -1,0 +1,16 @@
+<table class="table table-hover">
+  <thead>
+    <th scope="col">Nome</th>
+    <th scope="col">Documento</th>
+    <th scope="col">Valor gasto (R$)</th>
+  </thead>
+  <tbody>
+    @for (hospede of hospedes; track hospede) {
+      <tr>
+        <td>{{hospede.nome}}</td>
+        <td>{{hospede.CPF}}</td>
+        <td>{{hospede.valorEstadia | currency:'BRL':true}}</td>
+      </tr>
+    }
+  </tbody>
+</table>

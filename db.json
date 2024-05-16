@@ -1,0 +1,46 @@
+{
+  "pessoa": [
+    {
+      "nome": "José Filho",
+      "CPF": "592.019.519-52",
+      "telefone": "99123-4567"
+    },
+    {
+      "nome": "Julia da Silva",
+      "CPF": "123.321.789-98",
+      "telefone": "99444-5678"
+    }
+  ],
+  "check-in": [
+    {
+      "pessoa": {
+        "nome": "José Filho",
+        "CPF": "592.019.519-52",
+        "telefone": "99123-4567"
+      },
+      "dataEntrada": "2024-05-10T14:00:00",
+      "dataSaida": "2024-05-17T08:00:00",
+      "adicionalVeiculo": true
+    },
+    {
+      "pessoa": {
+        "nome": "Julia da Silva",
+        "CPF": "123.321.789-98",
+        "telefone": "99444-5678"
+      },
+      "dataEntrada": "2024-05-10T14:00:00",
+      "dataSaida": "2024-05-12T08:00:00",
+      "adicionalVeiculo": false
+    },
+    {
+      "pessoa": {
+        "nome": "Julia da Silva",
+        "CPF": "123.321.789-98",
+        "telefone": "99444-5678"
+      },
+      "dataEntrada": "2024-05-10T14:00:00",
+      "dataSaida": "2024-05-12T08:00:00",
+      "adicionalVeiculo": false
+    }
+  ]
+}
