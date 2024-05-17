@@ -10,10 +10,10 @@
     @if (f['nome'].touched && f['nome'].errors) {
     <div class="invalid-feedback">
       @if (f['nome'].errors['required']) {
-      <div>A pessoa precisa de um nome</div>
+      <div>Campo obrigatório.</div>
       }
       @if (f['nome'].errors['minLength']) {
-      <div>Nome muito curto</div>
+      <div>Nome muito curto.</div>
       }
     </div>
     }
@@ -27,15 +27,39 @@
       formControlName="CPF"
       id="cpfInput"
       [ngClass]="{ 'is-invalid': f['CPF'].touched && f['CPF'].errors }">
+
+    @if (f['CPF'].touched && f['CPF'].errors) {
+    <div class="invalid-feedback">
+      @if (f['CPF'].errors['required']) {
+      <div>Campo obrigatório.</div>
+      }
+      @if (f['CPF'].errors['cpfInvalido']) {
+      <div>CPF inválido.</div>
+      }
+    </div>
+    }
   </div>
 
-  <label for="telefoneInput" class="form-label">Telefone</label>
-  <input
-    type="tel"
-    class="form-control"
-    formControlName="telefone"
-    id="telefoneInput"
-    [ngClass]="{ 'is-invalid': f['telefone'].touched && f['telefone'].errors }">
+  <div class="form-group">
+    <label for="telefoneInput" class="form-label">Telefone</label>
+    <input
+      type="tel"
+      class="form-control"
+      formControlName="telefone"
+      id="telefoneInput"
+      [ngClass]="{ 'is-invalid': f['telefone'].touched && f['telefone'].errors }">
+
+    @if (f['telefone'].touched && f['telefone'].errors) {
+    <div class="invalid-feedback">
+      @if (f['telefone'].errors['required']) {
+      <div>Campo obrigatório.</div>
+      }
+      @if (f['telefone'].errors['pattern']) {
+      <div>Telefone inválido.</div>
+      }
+    </div>
+    }
+  </div>
 
   <button class="btn btn-primary">Salvar</button>
 </form>

@@ -26,7 +26,7 @@ export class NovaPessoaComponent {
   pessoaForm = new FormGroup({
     nome: new FormControl<string>('', [Validators.required, Validators.minLength(3)]),
     CPF: new FormControl<string>('', [Validators.required, ValidarCpf]),
-    telefone: new FormControl<string>('', Validators.required),
+    telefone: new FormControl<string>('', [Validators.required, Validators.pattern('[- +()0-9]{8,}')]),
   });
 
   get f(): { [key: string]: AbstractControl } {
@@ -36,12 +36,14 @@ export class NovaPessoaComponent {
   constructor(private pessoaService: PessoaService) {}
 
   onSubmit() {
+    this.pessoaForm.markAllAsTouched();
     if (this.pessoaForm.valid) {
       let pessoa: Pessoa = {
         nome: this.pessoaForm.get('nome')?.value!,
         CPF: this.pessoaForm.get('CPF')?.value!,
         telefone: this.pessoaForm.get('telefone')?.value!,
       }
+      this.pessoaService.save(pessoa).subscribe(res => console.log(res))
       console.log(pessoa)
     }
   }
@@ -49,7 +51,7 @@ export class NovaPessoaComponent {
 
 function ValidarCpf(control: AbstractControl): {[key: string]: any} | null  {
   if (control.value && !cpf.isValid(control.value)) {
-    return { cpf: { error: 'cpfInvalid' } }
+    return { cpfInvalido: true }
   }
   return null
 }
