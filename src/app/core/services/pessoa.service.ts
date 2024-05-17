@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, Subject, concatAll, debounceTime, filter, find, map, tap } from 'rxjs';
+import { Observable, Subject, concatAll, debounceTime, map, tap } from 'rxjs';
 import { Pessoa } from '../../shared/models/pessoa';
 import { HttpClient } from '@angular/common/http';
 
@@ -16,7 +16,7 @@ export class PessoaService {
   constructor(private httpClient: HttpClient) {
     this.pessoas$ = this.subject.pipe(
       debounceTime(300),
-      map(filtro => this.get(filtro as String)),
+      map(filtro => !!filtro ? this.get(filtro as String) : this.getAll()),
       concatAll()
     );
   }

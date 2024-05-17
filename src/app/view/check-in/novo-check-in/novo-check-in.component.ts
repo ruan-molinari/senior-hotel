@@ -2,8 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, FormsModule, ValidationErrors, Validators } from '@angular/forms';
 import { Pessoa } from '../../../shared/models/pessoa';
 import { PessoaService } from '../../../core/services/pessoa.service';
-import { Observable, Subject, debounce, debounceTime, delay, interval, pipe, throttle } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { CommonModule } from '@angular/common';
+
+//import $ from 'jquery';
+declare var $: any;
 
 @Component({
   selector: 'app-novo-check-in',
@@ -23,6 +26,8 @@ export class NovoCheckInComponent implements OnInit {
 
   ngOnInit(): void {
     this.fetchPessoas();
+
+
   }
 
   checkInFormGroup = new FormGroup({

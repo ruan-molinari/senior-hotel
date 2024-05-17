@@ -11,22 +11,15 @@
     </div>
   </div>
 
+
+  @for (pessoa of pessoas$ | async; track pessoa) {
+  <div>{{pessoa.nome}}</div>
+  }
+
   <div class="row">
     <div class="col form-group">
       <label for="pessoaSelect" class="form-label">Pessoa</label>
       <select id="pessoaSelect" class="form-select" name="pessoaSelect">
-
-        <div class="container">
-
-        <input
-          type="text"
-          name="pessoaInput"
-          class="p-5"
-          list="pessoaDatalist"
-          id="pessoaInput"
-          [(ngModel)]="filtroPessoa"
-          (input)="onPessoaFilterChange($event)">
-        </div>
 
         @for (pessoa of pessoas$ | async; track pessoa) {
           <option [value]="pessoa" >{{pessoa.nome}}</option>
