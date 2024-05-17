@@ -36,7 +36,7 @@ export class CheckInService {
         })));
   }
 
-  salvar(checkIn: CheckIn): Observable<any> {
+  save(checkIn: CheckIn): Observable<any> {
     return this.httpClient.post(`${API_URL}/check-in`, checkIn);
   }
 }

@@ -10,20 +10,7 @@ const API_URL = 'http://localhost:3000';
 })
 export class PessoaService {
 
-  subject = new Subject();
-  pessoas$?: Observable<Pessoa[]>;
-
-  constructor(private httpClient: HttpClient) {
-    this.pessoas$ = this.subject.pipe(
-      debounceTime(300),
-      map(filtro => !!filtro ? this.get(filtro as String) : this.getAll()),
-      concatAll()
-    );
-  }
-
-  buscar(query: String) {
-    this.subject.next(query);
-  }
+  constructor(private httpClient: HttpClient) { }
 
   getAll(): Observable<Pessoa[]> {
     return this.httpClient.get<Pessoa[]>(`${API_URL}/pessoa`)

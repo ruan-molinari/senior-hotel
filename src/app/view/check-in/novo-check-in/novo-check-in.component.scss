@@ -1,0 +1,14 @@
+:host {
+
+    /* Ajustando estilos do select2 para se adequar ao bootstrap 5 */
+
+    /* size */
+    --select2-single-height: 38px;
+    --select2-multiple-height: 38px;
+
+    /* selection */
+    --select2-selection-border-radius: 0.375rem;
+    --select2-selection-border-color: #dee2e6;
+    --select2-selection-focus-border-color: #a6c7f5;
+    --select2-selection-padding: 0.375rem 0.75rem;
+}

@@ -22,7 +22,7 @@ enum FiltroHospedes {
 export class ConsultasComponent implements OnInit {
 
   pagina = 0;
-  filtro = FiltroHospedes.AindaPresentes;
+  filtro = FiltroHospedes.JaDeixaram;
   hospedes: PessoaHospede[] = [];
 
   constructor(private checkInService: CheckInService) {}
@@ -47,11 +47,6 @@ export class ConsultasComponent implements OnInit {
   }
 
   private calcularHospedagem(checkIn: CheckIn) {
-    const diaria = 120;
-    const diariaFimDeSemana = 150;
-    const diariaGaragem = 15;
-    const diariaGaragemFimDeSemana = 20;
-
     let entrada = new Date(checkIn.dataEntrada);
     let saida = new Date(checkIn.dataSaida);
 
@@ -60,23 +55,40 @@ export class ConsultasComponent implements OnInit {
     let data = entrada
 
     while (data < saida) {
-      if (data.getDay() == 0 || data.getDay() == 6) {
-        total += diariaFimDeSemana;
-
-        if (checkIn.adicionalVeiculo) total += diariaGaragemFimDeSemana;
-      } else {
-        total += diaria;
-
-        if (checkIn.adicionalVeiculo) total += diariaGaragem;
-      }
+      total += this.calcularDiaria(data, checkIn);
 
       data = this.adicionarDias(data, 1)
+    }
+
+    if (data.getHours() >= 16 && data.getMinutes() > 30) {
+      total += this.calcularDiaria(data, checkIn)
     }
 
     return total;
   }
 
-  private adicionarDias(data: Date, dias: number) {
+  calcularDiaria(data: Date, checkIn: CheckIn) {
+    const diaria = 120;
+    const diariaFimDeSemana = 150;
+    const diariaGaragem = 15;
+    const diariaGaragemFimDeSemana = 20;
+
+    let total = 0;
+
+    if (data.getDay() == 0 || data.getDay() == 6) {
+      total += diariaFimDeSemana;
+
+      if (checkIn.adicionalVeiculo) total += diariaGaragemFimDeSemana;
+    } else {
+      total += diaria;
+
+      if (checkIn.adicionalVeiculo) total += diariaGaragem;
+    }
+
+    return total;
+  }
+
+  adicionarDias = (data: Date, dias: number) => {
     var result = new Date(data.toString());
     result.setDate(result.getDate() + dias);
     return result;

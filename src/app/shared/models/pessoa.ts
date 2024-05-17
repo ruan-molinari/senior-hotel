@@ -1,5 +1,5 @@
 export interface Pessoa {
-  nome: String,
+  nome: string,
   CPF: string,
   telefone: String,
 }
