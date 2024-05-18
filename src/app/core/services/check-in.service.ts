@@ -2,8 +2,9 @@ import { Injectable } from '@angular/core';
 import { CheckIn } from '../../shared/models/check-in';
 import { HttpClient } from '@angular/common/http';
 import { Observable, map } from 'rxjs';
+import { GlobalConstants } from '../../shared/global-constants';
 
-const API_URL = 'http://localhost:3000'
+const API_URL = GlobalConstants.apiUrl;
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,7 @@ export class CheckInService {
     return this.httpClient.get<CheckIn[]>(`${API_URL}/check-in`);
   }
 
-  buscarPorData(estadia: 'futuro' | 'presente' | 'passado'): Observable<CheckIn[]> {
+  buscarPorData(aindaPresentes: boolean): Observable<CheckIn[]> {
     const NOW = new Date();
 
     return this.httpClient.get<CheckIn[]>(`${API_URL}/check-in`)
@@ -25,14 +26,9 @@ export class CheckInService {
           let entrada = new Date(c.dataEntrada);
           let saida = new Date(c.dataSaida);
 
-          switch (estadia) {
-            case 'futuro':
-              return entrada >= NOW
-            case 'presente':
-              return entrada <= NOW && saida >= NOW
-            case 'passado':
-              return saida <= NOW;
-          }
+          return aindaPresentes
+            ? entrada <= NOW && saida >= NOW
+            : saida <= NOW;
         })));
   }
 

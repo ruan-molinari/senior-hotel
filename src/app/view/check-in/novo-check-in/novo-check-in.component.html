@@ -7,7 +7,7 @@
         type="text"
         class="form-control"
         formControlName="dataEntrada"
-        mask="0000-M0-d0 Hh:m0:s0"
+        mask="d0/M0/0000 Hh:m0:s0"
         [ngClass]="{ 'is-invalid': f['dataEntrada'].touched && f['dataEntrada'].errors }"
         [dropSpecialCharacters]="false"
         [leadZeroDateTime]="true">
@@ -31,7 +31,7 @@
         type="datetime"
         class="form-control"
         formControlName="dataSaida"
-        mask="0000-M0-d0 Hh:m0:s0"
+        mask="d0/M0/0000 Hh:m0:s0"
         [ngClass]="{ 'is-invalid': f['dataSaida'].touched && f['dataSaida'].errors || (checkInFormGroup.errors && checkInFormGroup.errors['saidaAntesDeEntrada'])}"
         [dropSpecialCharacters]="false"
         [leadZeroDateTime]="true">

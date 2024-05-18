@@ -2,37 +2,39 @@ import { Component, OnInit } from '@angular/core';
 import { PessoaHospede } from '../../../shared/models/pessoa';
 import { CheckInService } from '../../../core/services/check-in.service';
 import { CheckIn } from '../../../shared/models/check-in';
-
-import { from, map, toArray } from 'rxjs';
-import { CurrencyPipe } from '@angular/common';
+import { Observable, firstValueFrom, from, map, toArray } from 'rxjs';
+import { CommonModule, CurrencyPipe } from '@angular/common';
 import { PaginaPipe } from '../../../shared/pipes/pagina.pipe';
 
-enum FiltroHospedes {
-  AindaPresentes = 'presente',
-  JaDeixaram = 'passado'
-}
+import { GlobalConstants } from '../../../shared/global-constants';
+import { FormsModule } from '@angular/forms';
+
+const diaria = GlobalConstants.diaria;
+const diariaFimDeSemana = GlobalConstants.diariaFimDeSemana;
+const diariaGaragem = GlobalConstants.diariaGaragem;
+const diariaGaragemFimDeSemana = GlobalConstants.diariaGaragemFimDeSemana;
 
 @Component({
   selector: 'app-consultas',
   standalone: true,
-  imports: [CurrencyPipe, PaginaPipe],
+  imports: [CurrencyPipe, PaginaPipe, FormsModule],
   templateUrl: './consultas.component.html',
   styleUrl: './consultas.component.scss'
 })
 export class ConsultasComponent implements OnInit {
 
   pagina = 0;
-  filtro = FiltroHospedes.JaDeixaram;
+  aindaPresentes = false;
   hospedes: PessoaHospede[] = [];
 
   constructor(private checkInService: CheckInService) {}
 
   ngOnInit() {
-    this.filtrarHospedes();
+    this.buscarHospedagens();
   }
 
-  filtrarHospedes() {
-    this.checkInService.buscarPorData(this.filtro).subscribe(res => {
+  buscarHospedagens() {
+    this.checkInService.buscarPorData(this.aindaPresentes).subscribe(res => {
       from(res)
         .pipe(
           map<CheckIn, PessoaHospede>(hospedagem => {
@@ -41,12 +43,11 @@ export class ConsultasComponent implements OnInit {
               valorEstadia: this.calcularHospedagem(hospedagem)
             }
           }),
-          toArray()
-        ).subscribe(result => this.hospedes = result)
+          toArray()).subscribe(result => this.hospedes = result)
     });
   }
 
-  private calcularHospedagem(checkIn: CheckIn) {
+  calcularHospedagem(checkIn: CheckIn) {
     let entrada = new Date(checkIn.dataEntrada);
     let saida = new Date(checkIn.dataSaida);
 
@@ -54,41 +55,37 @@ export class ConsultasComponent implements OnInit {
 
     let data = entrada
 
-    while (data < saida) {
-      total += this.calcularDiaria(data, checkIn);
+    while (data.getDate() <= saida.getDate()) {
+      total += this.calcularDiaria(data, checkIn.adicionalVeiculo);
 
+      console.log(data)
       data = this.adicionarDias(data, 1)
     }
 
-    if (data.getHours() >= 16 && data.getMinutes() > 30) {
-      total += this.calcularDiaria(data, checkIn)
+    if (saida.getHours() > 16 || (saida.getHours() == 16 && saida.getMinutes() >= 30)) {
+      total += this.calcularDiaria(data, checkIn.adicionalVeiculo)
     }
 
     return total;
   }
 
-  calcularDiaria(data: Date, checkIn: CheckIn) {
-    const diaria = 120;
-    const diariaFimDeSemana = 150;
-    const diariaGaragem = 15;
-    const diariaGaragemFimDeSemana = 20;
-
+  calcularDiaria(data: Date, adicionalVeiculo: boolean) {
     let total = 0;
 
     if (data.getDay() == 0 || data.getDay() == 6) {
       total += diariaFimDeSemana;
 
-      if (checkIn.adicionalVeiculo) total += diariaGaragemFimDeSemana;
+      if (adicionalVeiculo) total += diariaGaragemFimDeSemana;
     } else {
       total += diaria;
 
-      if (checkIn.adicionalVeiculo) total += diariaGaragem;
+      if (adicionalVeiculo) total += diariaGaragem;
     }
 
     return total;
   }
 
-  adicionarDias = (data: Date, dias: number) => {
+  adicionarDias(data: Date, dias: number) {
     var result = new Date(data.toString());
     result.setDate(result.getDate() + dias);
     return result;

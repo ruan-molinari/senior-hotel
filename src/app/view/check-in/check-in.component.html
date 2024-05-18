@@ -1,7 +1,27 @@
-<button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#novaPessoaCollapse">
+<button class="btn btn-primary mb-3" type="button" data-bs-toggle="collapse" data-bs-target="#novaPessoaCollapse">
   Incluir Pessoa
 </button>
-<app-nova-pessoa class="collapse" id="novaPessoaCollapse"></app-nova-pessoa>
 
-<app-novo-check-in></app-novo-check-in>
-<app-consultas></app-consultas>
+<div id="novaPessoaCollapse">
+  <div class="card mb3" >
+    <div class="card-header">
+      Novo check in
+    </div>
+    <div class="card-body container-xxl">
+      <app-nova-pessoa></app-nova-pessoa>
+    </div>
+  </div>
+</div>
+
+<div class="card border-primary-subtle mb3">
+  <div class="card-header bg-primary">
+    Novo check in
+  </div>
+  <div class="card-body container-xxl">
+    <app-novo-check-in></app-novo-check-in>
+  </div>
+</div>
+
+<div class="card container-xxl mb3">
+  <app-consultas></app-consultas>
+</div>

@@ -1,3 +1,32 @@
+<form class="mb-5">
+  <div class="row ml-1 mb-3">
+    <span> Filtrar por: </span>
+  </div>
+
+  <div class="form-check form-check-inline">
+    <input
+      class="form-check-input"
+      type="radio"
+      name="jaDeixaramRadio"
+      (change)="buscarHospedagens()"
+      [(ngModel)]="aindaPresentes"
+      [value]="false">
+    <label class="form-check-label" for="jaDeixaramRadio">Pessoas que ja deixaram o hotel</label>
+  </div>
+
+  <div class="form-check form-check-inline">
+    <input
+      class="form-check-input"
+      type="radio"
+      name="aindaPresentesRadio"
+      (change)="buscarHospedagens()"
+      [(ngModel)]="aindaPresentes"
+      [value]="true">
+
+    <label class="form-check-label" for="aindaPresentesRadio">Pessoas ainda presentes</label>
+  </div>
+</form>
+
 <table class="table table-hover">
   <thead>
     <th scope="col">Nome</th>
@@ -5,7 +34,7 @@
     <th scope="col">Valor gasto (R$)</th>
   </thead>
   <tbody>
-    @for (hospede of hospedes | paginaPipe:pagina:10; track hospede) {
+    @for (hospede of (hospedes | paginaPipe:pagina:5); track hospede) {
       <tr>
         <td>{{hospede.nome}}</td>
         <td>{{hospede.CPF}}</td>
