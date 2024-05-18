@@ -28,9 +28,6 @@ describe('ConsultasComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('deveria filtrar hospedes', () => {
-  })
-
   it('deveria calcular diaria', () => {
     let data = new Date('2010-01-01 12:00:00'); // sexta-feira
     expect(data.getDay()).toBe(5);

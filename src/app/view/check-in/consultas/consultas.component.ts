@@ -47,6 +47,16 @@ export class ConsultasComponent implements OnInit {
     });
   }
 
+  mudarPagina(proxima: boolean) {
+    if (proxima) {
+      if (this.hospedes.length % 5 > 0
+       && this.hospedes.length > (this.pagina + 1) * 5
+      ) {
+        this.pagina++
+      }
+    } else if (this.pagina > 0) this.pagina--;
+  }
+
   calcularHospedagem(checkIn: CheckIn) {
     let entrada = new Date(checkIn.dataEntrada);
     let saida = new Date(checkIn.dataSaida);
