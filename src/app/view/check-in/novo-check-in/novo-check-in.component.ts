@@ -8,6 +8,8 @@ import { CheckInService } from '../../../core/services/check-in.service';
 import { CheckIn } from '../../../shared/models/check-in';
 import { Pessoa } from '../../../shared/models/pessoa';
 
+import moment from 'moment';
+
 @Component({
   selector: 'app-novo-check-in',
   standalone: true,
@@ -65,7 +67,7 @@ export class NovoCheckInComponent implements OnInit {
   }
 
   onSubmit() {
-    this.checkInFormGroup.markAllAsTouched;
+    this.checkInFormGroup.markAsTouched();
     if (this.checkInFormGroup.valid) {
       let checkIn: CheckIn = {
         dataEntrada: (new Date(this.checkInFormGroup.get('dataEntrada')?.value!).toISOString()),

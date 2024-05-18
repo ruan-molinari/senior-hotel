@@ -34,7 +34,7 @@ export class ConsultasComponent implements OnInit {
   }
 
   buscarHospedagens() {
-    this.checkInService.buscarPorData(this.aindaPresentes).subscribe(res => {
+    this.checkInService.getByDate(this.aindaPresentes).subscribe(res => {
       from(res)
         .pipe(
           map<CheckIn, PessoaHospede>(hospedagem => {

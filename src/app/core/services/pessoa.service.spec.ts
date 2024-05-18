@@ -10,7 +10,6 @@ describe('PessoaService', () => {
   let httpTestingController: HttpTestingController;
   let service: PessoaService;
 
-
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientModule],

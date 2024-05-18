@@ -13,11 +13,7 @@ export class CheckInService {
 
   constructor(private httpClient: HttpClient) { }
 
-  buscarTodos(): Observable<CheckIn[]> {
-    return this.httpClient.get<CheckIn[]>(`${API_URL}/check-in`);
-  }
-
-  buscarPorData(aindaPresentes: boolean): Observable<CheckIn[]> {
+  getByDate(aindaPresentes: boolean): Observable<CheckIn[]> {
     const NOW = new Date();
 
     return this.httpClient.get<CheckIn[]>(`${API_URL}/check-in`)
