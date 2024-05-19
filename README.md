@@ -1,27 +1,29 @@
 # SeniorHotel
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.7.
+Projeto gerado com [Angular CLI](https://github.com/angular/angular-cli) versão 17.3.7.
 
-## Development server
+### Preparando o servidor
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Instale o `json-server` `npm install -g json-server`
 
-## Code scaffolding
+### Opcional
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Instale o `npm-run-all` (`npm install -g npm-run-all`) para rodar o servidor e o cliente em paralelo.
 
-## Build
+### Rodando o projeto com `npm-run-all`
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+`npm run start`
 
-## Running unit tests
+### Rodando o projeto sem `npm-run-all`
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Em uma janela do terminal inicie o servidor: `npm run start-server`.
+Em outra o cliente: `npm run start-client`.
 
-## Running end-to-end tests
+#### Acesse [Senior Hotel](http://localhost:4200)
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
 
-## Further help
+### Rodando testes
+`ng test --browsers Firefox`
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+`ng test --browsers Chrome`
+

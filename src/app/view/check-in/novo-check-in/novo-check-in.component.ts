@@ -2,13 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, FormsModule, ValidationErrors, Validators } from '@angular/forms';
 import { PessoaService } from '../../../core/services/pessoa.service';
 import { CommonModule } from '@angular/common';
-import { Select2Data, Select2Module, Select2Option, Select2SearchEvent, Select2UpdateValue } from 'ng-select2-component';
+import { Select2Data, Select2Module, Select2SearchEvent, Select2UpdateValue } from 'ng-select2-component';
 import { NgxMaskDirective } from 'ngx-mask';
 import { CheckInService } from '../../../core/services/check-in.service';
 import { CheckIn } from '../../../shared/models/check-in';
 import { Pessoa } from '../../../shared/models/pessoa';
-
-import moment from 'moment';
 
 @Component({
   selector: 'app-novo-check-in',

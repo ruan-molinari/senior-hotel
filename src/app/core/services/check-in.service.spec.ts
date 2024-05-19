@@ -55,7 +55,7 @@ describe('CheckInService', () => {
       done();
     })
 
-    const testRequest = httpTestingController.expectOne(`${GlobalConstants.apiUrl}/pessoa`);
+    const testRequest = httpTestingController.expectOne(`${GlobalConstants.apiUrl}/check-in`);
 
     testRequest.flush(checkInStub);
   })
@@ -65,7 +65,7 @@ describe('CheckInService', () => {
       done();
     })
 
-    const testRequest = httpTestingController.expectOne(`${GlobalConstants.apiUrl}/pessoa`);
+    const testRequest = httpTestingController.expectOne(`${GlobalConstants.apiUrl}/check-in`);
 
     expect(testRequest.request.method).toEqual('POST');
 
@@ -73,7 +73,7 @@ describe('CheckInService', () => {
   })
 
   it('#save body deveria ser valor esperado', (done) => {
-    const pessoasStub: CheckIn = {
+    const checkInStub: CheckIn = {
         pessoa: {
           nome: 'Maria',
           CPF: '12345',
@@ -84,17 +84,17 @@ describe('CheckInService', () => {
         adicionalVeiculo: false
       };
 
-    service.save(pessoasStub).subscribe(pessoa => {
+    service.save(checkInStub).subscribe(pessoa => {
       expect(pessoa).toBeDefined();
-      expect(pessoa).toEqual(pessoasStub);
+      expect(pessoa).toEqual(checkInStub);
       done();
     })
 
-    const testRequest = httpTestingController.expectOne(`${GlobalConstants.apiUrl}/pessoa`);
+    const testRequest = httpTestingController.expectOne(`${GlobalConstants.apiUrl}/check-in`);
 
-    expect(testRequest.request.body).toEqual(pessoasStub);
+    expect(testRequest.request.body).toEqual(checkInStub);
 
-    testRequest.flush(pessoasStub);
+    testRequest.flush(checkInStub);
   })
 });
 
