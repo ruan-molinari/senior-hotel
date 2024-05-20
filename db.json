@@ -11,18 +11,6 @@
       "CPF": "123.321.789-98",
       "telefone": "99444-5678",
       "id": "eb6d"
-    },
-    {
-      "id": "559f",
-      "nome": "Ruan Gustavo Molinari",
-      "CPF": "098.353.459-45",
-      "telefone": "+55 (47) 1233-3333"
-    },
-    {
-      "id": "1525",
-      "nome": "Ruan Gustavo Molinari",
-      "CPF": "098.353.459-45",
-      "telefone": "+55 (47) 1233-3333"
     }
   ],
   "check-in": [
@@ -58,42 +46,6 @@
       "dataSaida": "2024-05-12T08:00:00",
       "adicionalVeiculo": false,
       "id": "f6de"
-    },
-    {
-      "id": "eacc",
-      "dataEntrada": "2024-05-17T20:00:00",
-      "dataSaida": "2024-05-17T20:00:00",
-      "pessoa": {
-        "id": "559f",
-        "nome": "Ruan Gustavo Molinari",
-        "CPF": "098.353.459-45",
-        "telefone": "+55 (47) 1233-3333"
-      },
-      "adicionalVeiculo": true
-    },
-    {
-      "id": "6029",
-      "dataEntrada": "2000-01-01T10:00:00.000Z",
-      "dataSaida": "2000-01-03T18:31:00.000Z",
-      "pessoa": {
-        "id": "559f",
-        "nome": "Ruan Gustavo Molinari",
-        "CPF": "098.353.459-45",
-        "telefone": "+55 (47) 1233-3333"
-      },
-      "adicionalVeiculo": true
-    },
-    {
-      "id": "2a76",
-      "dataEntrada": "2000-01-01T10:00:00.000Z",
-      "dataSaida": "2000-01-03T18:29:00.000Z",
-      "pessoa": {
-        "id": "559f",
-        "nome": "Ruan Gustavo Molinari",
-        "CPF": "098.353.459-45",
-        "telefone": "+55 (47) 1233-3333"
-      },
-      "adicionalVeiculo": true
     },
     {
       "id": "87f2",
